@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "311741373533",
+    "firebase_url": "https://pinetree-2cc0e.firebaseio.com",
+    "project_id": "pinetree-2cc0e",
+    "storage_bucket": "pinetree-2cc0e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311741373533:android:aa9a31672da9a8e4",
+        "android_client_info": {
+          "package_name": "com.aqurytech.pinetree"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311741373533-9rp7u6fak6581g2qfvvh1gd959c3etce.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiIzaZEONQw0ZTrJWIXUKdMMfryBnk-O0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
