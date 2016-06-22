@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:baselineAligned="false"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:gravity="end"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:weightSum="5">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:background="@color/colorGreyDark"
+        android:padding="1dp">
+
+        <ImageView
+            android:id="@+id/listBtn"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/colorGrey"
+            android:contentDescription="@string/app_name"
+            android:padding="5dp"
+            android:src="@drawable/listbtn" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.5"
+        android:background="@color/colorGreyDark"
+        android:paddingBottom="1dp"
+        android:paddingEnd="1dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="1dp"
+        android:paddingStart="0dp"
+        android:paddingTop="1dp">
+
+        <ImageView
+            android:id="@+id/mapBtn"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/colorWhite"
+            android:contentDescription="@string/app_name"
+            android:padding="5dp"
+            android:src="@drawable/mapbtn" />
+
+    </RelativeLayout>
+
+</LinearLayout>

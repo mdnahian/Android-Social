@@ -1,8 +1,10 @@
 package activities;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +16,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.aqurytech.pinetree.R;
+import com.parse.ParseUser;
+
+import fragments.DiscoverFragment;
+import fragments.FavoritesFragment;
+import fragments.InboxFragment;
+import fragments.MyAccountFragment;
+import fragments.MyTreesFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -22,27 +31,52 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
+        ParseUser currentUser = ParseUser.getCurrentUser();
+        if(currentUser == null){
+            logout();
+        }
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        assert fab != null;
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(MainActivity.this, PlantTreeActivity.class));
             }
         });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        assert drawer != null;
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        DiscoverFragment fragment = new DiscoverFragment();
+        fragmentTransaction.replace(R.id.content_fragment, fragment).commit();
+
+        navigationView.setCheckedItem(R.id.nav_discover);
+
+        // get location
+        // update title with location
+        // retrieve posts in location
+        // display posts in location
+
     }
+
 
     @Override
     public void onBackPressed() {
@@ -82,22 +116,41 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_discover) {
+            DiscoverFragment fragment = new DiscoverFragment();
+            fragmentTransaction.replace(R.id.content_fragment, fragment).commit();
+        } else if (id == R.id.nav_my_trees) {
+            MyTreesFragment fragment = new MyTreesFragment();
+            fragmentTransaction.replace(R.id.content_fragment, fragment).commit();
+        } else if (id == R.id.nav_favorites) {
+            FavoritesFragment fragment = new FavoritesFragment();
+            fragmentTransaction.replace(R.id.content_fragment, fragment).commit();
+        } else if (id == R.id.nav_inbox) {
+            InboxFragment fragment = new InboxFragment();
+            fragmentTransaction.replace(R.id.content_fragment, fragment).commit();
+        } else if (id == R.id.nav_account) {
+            MyAccountFragment fragment = new MyAccountFragment();
+            fragmentTransaction.replace(R.id.content_fragment, fragment).commit();
+        } else if (id == R.id.nav_signout) {
+            logout();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+
+    private void logout(){
+        ParseUser.logOut();
+        startActivity(new Intent(MainActivity.this, LoginActivity.class));
+        finish();
+    }
+
+
 }

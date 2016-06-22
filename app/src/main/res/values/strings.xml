@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Pinetree</string>
 
+    <string name="parseAppId">pinetree</string>
+    <string name="parseClientId">y2DJIxBihBof5wWVX3gP</string>
+    <string name="parseUrl">http://pintree.us-east-1.elasticbeanstalk.com/parse/</string>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
@@ -22,4 +26,9 @@
     <string name="username">Username</string>
     <string name="confirm">Confirm Password</string>
 
+
+    <string name="zero">0</string>
+    <string name="post_placeholder">What\'s on your mind?</string>
+
+    <string name="plant_tree">Plant Tree</string>
 </resources>
